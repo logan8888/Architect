@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>Logan Freeth</title>
+<title>James Alderton</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -100,7 +100,7 @@
   /* Name — primary hero element */
   .wordmark {
     font-family: 'Outfit', Arial, sans-serif;
-    font-size: clamp(36px, 9.5vw, 80px);
+    font-size: clamp(16px, 6.5vw, 80px);
     font-weight: 500;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -144,8 +144,86 @@
     text-transform: uppercase;
     color: rgba(17,16,9,0.62);
     line-height: 1.8;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
+
+  /* Bio */
+  .bio {
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: clamp(11px, 2.4vw, 13px);
+    font-weight: 400;
+    letter-spacing: 0.055em;
+    color: rgba(17,16,9,0.62);
+    line-height: 1.8;
+    max-width: 360px;
+    margin: 0 auto 36px;
+  }
+
+  /* Gallery */
+  .gallery-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.28s cubic-bezier(0.4,0,0.2,1);
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto 32px;
+  }
+  .gallery-wrap.open {
+    grid-template-rows: 1fr;
+  }
+  .gallery-inner {
+    overflow: hidden;
+    position: relative;
+    min-height: 0;
+  }
+  .gallery-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    overflow: visible;
+  }
+  .frame-rect {
+    stroke-dasharray: 3032;
+    stroke-dashoffset: 3032;
+  }
+  .gallery-content {
+    padding: 14px;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .gallery-content.visible {
+    opacity: 1;
+  }
+  .gallery-main img {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    display: block;
+  }
+  .gallery-thumbs {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+    margin-top: 4px;
+  }
+  .thumb {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    cursor: pointer;
+    display: block;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+  }
+  .thumb.active,
+  .thumb:hover { opacity: 1; }
+
+  body.gallery-open { overflow-y: auto; }
 
   /* Buttons */
   .buttons {
@@ -263,7 +341,7 @@
   }
 
   @media (min-width: 1024px) {
-    .wordmark { font-size: clamp(36px, 4.5vw, 64px); }
+    .wordmark { font-size: clamp(16px, 4.5vw, 64px); }
     h1 { font-size: 20px; }
     .sub { font-size: 13px; }
     .grain { opacity: 0.5; }
@@ -321,19 +399,42 @@
 <!-- ── Main content ── -->
 <main class="page">
 
-  <p class="wordmark">Logan Freeth</p>
+  <p class="wordmark">James Alderton</p>
 
-  <h1>Turn views into <strong>bookings.</strong></h1>
+  <h1>Design that outlasts <strong>the build.</strong></h1>
 
   <div class="rule"></div>
 
   <p class="sub">
-    Promo content for service businesses
+    Independent Architect · London
   </p>
+
+  <p class="bio">RIBA registered architect based in London. Fifteen years delivering bespoke residential projects, extensions and new builds across the UK. Every project is taken on personally.</p>
+
+  <div class="gallery-wrap" id="gallery-wrap">
+    <div class="gallery-inner" id="gallery-inner">
+      <svg class="gallery-frame" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+        <rect id="frame-rect" class="frame-rect" x="1" y="1" width="998" height="518" fill="none" stroke="rgba(17,16,9,0.18)" stroke-width="1.5"/>
+      </svg>
+      <div class="gallery-content">
+        <div class="gallery-main">
+          <img id="main-img" src="https://picsum.photos/id/1029/1200/800" alt="">
+        </div>
+        <div class="gallery-thumbs">
+          <img class="thumb active" src="https://picsum.photos/id/1029/300/200" data-id="1029" data-idx="0" alt="">
+          <img class="thumb" src="https://picsum.photos/id/1031/300/200" data-id="1031" data-idx="1" alt="">
+          <img class="thumb" src="https://picsum.photos/id/1040/300/200" data-id="1040" data-idx="2" alt="">
+          <img class="thumb" src="https://picsum.photos/id/1043/300/200" data-id="1043" data-idx="3" alt="">
+          <img class="thumb" src="https://picsum.photos/id/1060/300/200" data-id="1060" data-idx="4" alt="">
+          <img class="thumb" src="https://picsum.photos/id/1082/300/200" data-id="1082" data-idx="5" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="buttons">
     <a href="https://wa.me/447000000000" class="btn btn-dark">
-      Message Me
+      Enquire
     </a>
     <a href="https://instagram.com/logan.visuals_uk" class="btn btn-outline" target="_blank" rel="noopener">
       <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -343,36 +444,139 @@
       </svg>
       Instagram
     </a>
-    <a href="index.html" class="btn btn-outline">
-      View My Work
-    </a>
+    <button id="btn-projects" class="btn btn-outline">
+      View Projects
+    </button>
   </div>
 
   <div class="pills">
-    <span class="pill">Salons</span>
-    <span class="pill">Barbers</span>
-    <span class="pill">Local businesses</span>
+    <span class="pill">Residential</span>
+    <span class="pill">Extensions</span>
+    <span class="pill">New Builds</span>
   </div>
 
 </main>
 
-<a href="https://loganfreeth.com" class="footer-link">loganfreeth.com</a>
 
 <script>
-  // Animate hue rotation for organic shadow movement
-  // Slow cycle — 20 seconds per full rotation for subtle, luxurious drift
+  // ── Hue animation ──
   const hueEl = document.getElementById('hueRotate');
   const DURATION = 8000;
   let start = null;
-
   function tick(ts) {
     if (!start) start = ts;
     const hue = (((ts - start) % DURATION) / DURATION) * 360;
     hueEl.setAttribute('values', hue.toFixed(3));
     requestAnimationFrame(tick);
   }
-
   requestAnimationFrame(tick);
+
+  // ── Gallery ──
+  const galleryWrap    = document.getElementById('gallery-wrap');
+  const galleryInner   = document.getElementById('gallery-inner');
+  const galleryContent = galleryInner.querySelector('.gallery-content');
+  const frameRect      = document.getElementById('frame-rect');
+  const mainImg        = document.getElementById('main-img');
+  const thumbs         = document.querySelectorAll('.thumb');
+  const btnProjects    = document.getElementById('btn-projects');
+
+  const IDS       = [1029, 1031, 1040, 1043, 1060, 1082];
+  const PERIMETER = 3032; // 2 * (998 + 518)
+
+  // Timing (ms)
+  const T_EXPAND  = 280;  // grid height
+  const T_BORDER  = 620;  // border draws
+  const T_FADE    = 300;  // content fade
+  // close reverses: content out → border undraws → height collapses
+  const T_CFADE   = 200;
+  const T_UNDRAW  = 480;
+  const T_COLL    = 280;
+
+  let galleryOpen = false;
+  let currentIdx  = 0;
+  let cycleTimer  = null;
+  let closeTimers = [];
+
+  function clearCloseTimers() { closeTimers.forEach(clearTimeout); closeTimers = []; }
+
+  function setActive(idx) {
+    currentIdx = idx;
+    mainImg.src = `https://picsum.photos/id/${IDS[idx]}/1200/800`;
+    thumbs.forEach((t, i) => t.classList.toggle('active', i === idx));
+  }
+
+  function startCycle() {
+    stopCycle();
+    cycleTimer = setInterval(() => setActive((currentIdx + 1) % IDS.length), 4000);
+  }
+
+  function stopCycle() { clearInterval(cycleTimer); cycleTimer = null; }
+
+  function resetBorder() {
+    frameRect.style.transition = 'none';
+    frameRect.style.strokeDashoffset = PERIMETER;
+  }
+
+  function openGallery() {
+    clearCloseTimers();
+    galleryOpen = true;
+    document.body.classList.add('gallery-open');
+
+    // 1. Expand height
+    resetBorder();
+    galleryWrap.classList.add('open');
+
+    // 2. After height settles, draw border
+    setTimeout(() => {
+      requestAnimationFrame(() => {
+        frameRect.style.transition = `stroke-dashoffset ${T_BORDER}ms cubic-bezier(0.4,0,0.25,1)`;
+        frameRect.style.strokeDashoffset = '0';
+      });
+
+      // 3. After border done, fade in content
+      setTimeout(() => {
+        galleryContent.classList.add('visible');
+        startCycle();
+      }, T_BORDER);
+
+    }, T_EXPAND + 20);
+  }
+
+  function closeGallery() {
+    clearCloseTimers();
+    galleryOpen = false;
+    stopCycle();
+
+    // 1. Fade out content
+    galleryContent.classList.remove('visible');
+
+    // 2. Undraw border
+    closeTimers.push(setTimeout(() => {
+      frameRect.style.transition = `stroke-dashoffset ${T_UNDRAW}ms cubic-bezier(0.4,0,0.2,1)`;
+      frameRect.style.strokeDashoffset = PERIMETER;
+
+      // 3. Collapse height
+      closeTimers.push(setTimeout(() => {
+        galleryWrap.classList.remove('open');
+        document.body.classList.remove('gallery-open');
+
+        // Reset border silently after collapse
+        closeTimers.push(setTimeout(resetBorder, T_COLL + 50));
+      }, T_UNDRAW));
+
+    }, T_CFADE));
+  }
+
+  btnProjects.addEventListener('click', () => {
+    galleryOpen ? closeGallery() : openGallery();
+  });
+
+  thumbs.forEach((thumb, i) => {
+    thumb.addEventListener('click', () => { setActive(i); startCycle(); });
+  });
+
+  galleryInner.addEventListener('mouseenter', stopCycle);
+  galleryInner.addEventListener('mouseleave', () => { if (galleryOpen) startCycle(); });
 </script>
 
 </body>
